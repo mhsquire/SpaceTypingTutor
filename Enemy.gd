@@ -1,21 +1,26 @@
 extends Sprite2D
 
+# This is the script for all enemies that exist right now.
+# Enemies and managed by EnemyManager which calls various methods here.
+# 
+
+signal destroyed(_on_destroy_enemy)
+
+var orange = Color(Color.ORANGE)
+var gray = Color(Color.GRAY)
+var max_damage = 3
+
+var _damage = 0
 
 @onready var prompt = $TextToType
 @onready var prompt_text = prompt.text
 @onready var reinforcement_timer = $ReinforcementTimer
-var orange = Color(Color.ORANGE)
-var gray = Color(Color.GRAY)
-
-var damage = 0
-var max_damage = 3
-signal destroyed(_on_destroy_enemy)
 
 func _ready():
 	reinforcement_timer.timeout.connect(_on_reinforcement_timer_timeout)
 
 func _on_reinforcement_timer_timeout() -> void:
-	damage = max_damage
+	_damage = max_damage
 	set_visible(1)
 
 
@@ -34,7 +39,7 @@ func make_destroyed() -> void:
 
 func make_created() -> void:
 	set_visible(1)
-	damage = max_damage
+	_damage = max_damage
 	print("Created")
 
 
@@ -48,9 +53,9 @@ func set_prompt_text(new_text: String) -> void:
 
 
 func take_damage() -> void:
-	print("Damaged = ", damage)
-	damage = damage - 1
-	if damage <= 0:
+	print("Damaged = ", _damage)
+	_damage = _damage - 1
+	if _damage <= 0:
 		destroyed.emit()
 
 func make_timer_start(time_to_wait: int) -> void:

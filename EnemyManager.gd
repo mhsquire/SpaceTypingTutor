@@ -29,9 +29,7 @@ func update_selected_enemy_indicator():
 
 func switch_enemy():
 	# Calculate the new index by wrapping around
-	print(selected_enemy_index)
 	selected_enemy_index = (selected_enemy_index + 1) % enemies.size()
-	print(selected_enemy_index)
 	# Update the visual indication of the selected enemy (e.g., highlight)
 	update_selected_enemy_indicator()
 
