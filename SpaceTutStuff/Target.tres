@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bav2d7ajthmmk"]
+
+[ext_resource type="FontFile" uid="uid://d1av2ynee2qbb" path="res://SpaceTutStuff/Duracellio-Regular.otf" id="1_epxns"]
+
+[resource]
+font = ExtResource("1_epxns")
+font_size = 128
+font_color = Color(1, 0.666667, 0.00784314, 1)
