@@ -34,13 +34,8 @@ func _input(event: InputEvent) -> void:
 		var typed_event = event as InputEventKey
 		var key_typed = PackedByteArray([typed_event.physical_keycode]).get_string_from_utf8()
 		print(key_typed)
-		enemy_manager.destroy_enemy()
+		enemy_manager.damage_enemy()
 		
-
-
-func _unhandled_input(event: InputEvent) -> void:
-	pass
-
 
 "
 
@@ -75,3 +70,7 @@ scale = Vector2(0.426758, 0.426758)
 [node name="Enemy3" parent="Enemies" instance=ExtResource("6_4c4ke")]
 position = Vector2(958, 200)
 scale = Vector2(0.373047, 0.373047)
+
+[connection signal="destroyed" from="Enemies/Enemy1" to="EnemyManager" method="_on_destroy_enemy"]
+[connection signal="destroyed" from="Enemies/Enemy2" to="EnemyManager" method="_on_destroy_enemy"]
+[connection signal="destroyed" from="Enemies/Enemy3" to="EnemyManager" method="_on_destroy_enemy"]
