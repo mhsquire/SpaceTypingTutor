@@ -8,7 +8,6 @@ signal destroyed(_on_destroy_enemy)
 
 var orange = Color(Color.ORANGE)
 var gray = Color(Color.GRAY)
-var max_damage = 3
 
 var _damage = 0
 
@@ -19,17 +18,15 @@ var _damage = 0
 func _ready():
 	reinforcement_timer.timeout.connect(_on_reinforcement_timer_timeout)
 
-func _on_reinforcement_timer_timeout() -> void:
-	_damage = max_damage
-	set_visible(1)
-
 
 func make_target(make_visible: bool) -> void:
 	if make_visible:
-		prompt.set("theme_override_colors/default_color", orange)
+		prompt.set("theme_override_colors/font_color", orange)
+		prompt.set("theme_override_font_sizes/font_size", 128)
 		print(prompt.text)
 	else:
-		prompt.set("theme_override_colors/default_color", gray)
+		prompt.set("theme_override_colors/font_color", gray)
+		prompt.set("theme_override_font_sizes/font_size", 96)
 
 
 func make_destroyed() -> void:
@@ -39,8 +36,9 @@ func make_destroyed() -> void:
 
 func make_created() -> void:
 	set_visible(1)
-	_damage = max_damage
+	_damage = prompt_text.length()
 	print("Created")
+	print("Health = ", _damage)
 
 
 func get_prompt_text() -> String:
@@ -58,7 +56,10 @@ func take_damage() -> void:
 	if _damage <= 0:
 		destroyed.emit()
 
+
 func make_timer_start(time_to_wait: int) -> void:
 	reinforcement_timer.start(time_to_wait)
 
 
+func _on_reinforcement_timer_timeout() -> void:
+	make_created()
