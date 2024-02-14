@@ -1,0 +1,77 @@
+[gd_scene load_steps=6 format=3 uid="uid://bcsx8hqgph108"]
+
+[ext_resource type="Texture2D" uid="uid://dsdy0son1jaso" path="res://SpaceTutStuff/Star Background.png" id="1_xo02m"]
+[ext_resource type="Script" path="res://EnemyManager.gd" id="2_ddacj"]
+[ext_resource type="PackedScene" uid="uid://k74cqgy38ssk" path="res://SpaceTutStuff/Enemy.tscn" id="6_4c4ke"]
+
+[sub_resource type="GDScript" id="GDScript_m0kwl"]
+script/source = "extends Node2D
+
+var active_enemy = null
+var current_letter_index: int = -1
+@onready
+var enemy_manager = get_node(\"EnemyManager\")
+@onready
+var first_enemy = get_node(\"Enemies/Enemy1\")
+
+
+
+func _ready():
+	print(\"Typing Game\")
+	enemy_manager.create_first_enemy_set()
+
+func _input(event: InputEvent) -> void:
+
+	if event.is_action(\"escape_from_game\"):
+		print(\"Shut Down Requested!\")
+		get_tree().quit()
+	
+	elif event.is_action(\"Tab_Enemy_switch\") and not event.is_pressed():
+		enemy_manager.switch_enemy()
+		print(\"switch enemy\")
+		
+	elif event is InputEventKey and not event.is_pressed():
+		var typed_event = event as InputEventKey
+		var key_typed = PackedByteArray([typed_event.physical_keycode]).get_string_from_utf8()
+		print(key_typed)
+		enemy_manager.destroy_enemy()
+		
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	pass
+
+
+"
+
+[sub_resource type="ImageTexture" id="ImageTexture_0fu1r"]
+
+[node name="Main" type="Node2D"]
+script = SubResource("GDScript_m0kwl")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1179.0
+offset_bottom = 681.0
+texture = SubResource("ImageTexture_0fu1r")
+
+[node name="StarBackground" type="Sprite2D" parent="TextureRect"]
+position = Vector2(558, 594)
+scale = Vector2(0.377075, 0.377075)
+texture = ExtResource("1_xo02m")
+
+[node name="EnemyManager" type="Node" parent="."]
+script = ExtResource("2_ddacj")
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Enemy1" parent="Enemies" instance=ExtResource("6_4c4ke")]
+position = Vector2(197, 194)
+scale = Vector2(0.407227, 0.407227)
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource("6_4c4ke")]
+position = Vector2(584, 435)
+scale = Vector2(0.426758, 0.426758)
+
+[node name="Enemy3" parent="Enemies" instance=ExtResource("6_4c4ke")]
+position = Vector2(958, 200)
+scale = Vector2(0.373047, 0.373047)
