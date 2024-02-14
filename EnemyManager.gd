@@ -14,6 +14,8 @@ var selected_enemy_index = 1
 
 
 func create_first_enemy_set():
+	for i in range(enemies.size()):
+		enemies[i].make_created()
 	update_selected_enemy_indicator()
 
 
@@ -34,11 +36,14 @@ func switch_enemy():
 	update_selected_enemy_indicator()
 
 
-func destroy_enemy() -> void:
+func damage_enemy() -> void:
+	enemies[selected_enemy_index].take_damage()
+
+func _on_destroy_enemy() -> void:
 	print("Enemy Destroyed")
 	enemies[selected_enemy_index].make_destroyed()
+	print("start timer")
 	enemies[selected_enemy_index].make_timer_start(3.0)
 	selected_enemy_index = (selected_enemy_index + 1) % enemies.size()
 	update_selected_enemy_indicator()
-	
 
