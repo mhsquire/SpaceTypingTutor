@@ -15,6 +15,9 @@ var _damage = 0
 @onready var prompt_text = prompt.text
 @onready var reinforcement_timer = $ReinforcementTimer
 
+
+@onready var words = get_node("../../Wordlist")
+
 func _ready():
 	reinforcement_timer.timeout.connect(_on_reinforcement_timer_timeout)
 
@@ -35,8 +38,10 @@ func make_destroyed() -> void:
 
 
 func make_created() -> void:
+	var word = words.choose_word()
+	set_prompt_text(word)
 	set_visible(1)
-	_damage = prompt_text.length()
+	_damage = word.length()
 	print("Created")
 	print("Health = ", _damage)
 
