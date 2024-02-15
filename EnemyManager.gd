@@ -1,15 +1,13 @@
 extends Node
 
+
 var selected_enemy_index = 1
 
-@onready
-var enemy1 = get_node("../Enemies/Enemy1")
-@onready
-var enemy2 = get_node("../Enemies/Enemy2")
-@onready
-var enemy3 = get_node("../Enemies/Enemy3")
-@onready
-var enemies = [enemy1, enemy2, enemy3]
+
+@onready var enemy1 = get_node("../Enemies/Enemy1")
+@onready var enemy2 = get_node("../Enemies/Enemy2")
+@onready var enemy3 = get_node("../Enemies/Enemy3")
+@onready var enemies = [enemy1, enemy2, enemy3]
 
 
 func _on_destroy_enemy() -> void:
@@ -45,6 +43,9 @@ func switch_enemy():
 	# Update the visual indication of the selected enemy (e.g., highlight)
 
 
-func damage_enemy() -> void:
-	enemies[selected_enemy_index].take_damage()
-
+func damage_enemy(letter: String) -> void:
+	print(letter)
+	var current_enemy = enemies[selected_enemy_index]
+	print(current_enemy.word[current_enemy.damage].to_upper())
+	if letter == current_enemy.word[current_enemy.damage].to_upper():
+		enemies[selected_enemy_index].take_damage()

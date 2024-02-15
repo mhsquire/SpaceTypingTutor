@@ -9,21 +9,17 @@
 *Bug* constantly being created
 - Text is chosen from wordlist
 - When an enemy is hidden it can't be selected
-
+- Typing the correct text damages ship, else nothing
+**Quirk** Ships maintain their damage after switching with Tab
 
 ## ** Below are Features Yet to be Completed for 
 		**Scene** Combat with Ememy ships. **
 
-.
-- Typing the correct text damages ship, else nothing
-- Typing the correct next letter changes letter from not hit to hit text.
-- Once the hit text is complete the ship is destroyed.
 - Text changes noticeably to indicate which letters have been typed.
 - Text turns red or something to indicate a mistyped letter, must start over.
-
+- Supports Dvorak and qwerty.
 More... Such as... Animation and Viewscreen graphics. Sounds?
 
-
-
+Next Scenes
 ## **Scene** Tutorial: Power up ship with different keyboard commands
 ## **Main Gameplay** Exploration map or Roguelite for new keys
