@@ -27,11 +27,11 @@ func make_target(make_visible: bool) -> void:
 	if make_visible:
 		prompt.set("theme_override_colors/font_color", orange)
 		prompt.set("theme_override_font_sizes/font_size", 128)
-		
 	else:
 		prompt.set("theme_override_colors/font_color", gray)
 		prompt.set("theme_override_font_sizes/font_size", 96)
 		damage = 0
+		$ProgressBar.value = 100 - damage
 
 
 func make_destroyed() -> void:
@@ -44,6 +44,7 @@ func make_created() -> void:
 	set_prompt_text(word)
 	set_visible(1)
 	damage = 0
+	$ProgressBar.value = 100 - damage
 	print("Created")
 	print("Health = ", damage)
 
@@ -61,6 +62,7 @@ func take_damage() -> void:
 
 	print("Word length = ", word.length())
 	damage = damage + 1
+	$ProgressBar.value = (word.length() - damage) * 100 / word.length()
 	print("Damaged = ", damage)
 	if damage >= word.length():
 		destroyed.emit()

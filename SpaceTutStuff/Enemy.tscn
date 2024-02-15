@@ -32,3 +32,15 @@ metadata/_edit_use_anchors_ = true
 
 [node name="ReinforcementTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+modulate = Color(0, 1, 1, 1)
+anchors_preset = -1
+anchor_left = 0.046
+anchor_top = 1.046
+anchor_right = 0.973
+anchor_bottom = 1.096
+offset_left = -512.104
+offset_top = -512.104
+offset_right = -512.352
+offset_bottom = -507.304
