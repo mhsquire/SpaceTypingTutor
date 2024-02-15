@@ -34,9 +34,8 @@ func _input(event: InputEvent) -> void:
 	elif event is InputEventKey and not event.is_pressed():
 		var typed_event = event as InputEventKey
 		var key_typed = PackedByteArray([typed_event.physical_keycode]).get_string_from_utf8()
-		print(key_typed)
-		enemy_manager.damage_enemy()
-		
+
+		enemy_manager.damage_enemy(key_typed)
 "
 
 [sub_resource type="ImageTexture" id="ImageTexture_0fu1r"]

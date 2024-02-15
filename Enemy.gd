@@ -6,17 +6,18 @@ extends Sprite2D
 
 signal destroyed(_on_destroy_enemy)
 
+
 var orange = Color(Color.ORANGE)
 var gray = Color(Color.GRAY)
+var damage = 0
+var word = []
 
-var _damage = 0
 
 @onready var prompt = $TextToType
 @onready var prompt_text = prompt.text
 @onready var reinforcement_timer = $ReinforcementTimer
-
-
 @onready var words = get_node("../../Wordlist")
+
 
 func _ready():
 	reinforcement_timer.timeout.connect(_on_reinforcement_timer_timeout)
@@ -26,10 +27,11 @@ func make_target(make_visible: bool) -> void:
 	if make_visible:
 		prompt.set("theme_override_colors/font_color", orange)
 		prompt.set("theme_override_font_sizes/font_size", 128)
-		print(prompt.text)
+		
 	else:
 		prompt.set("theme_override_colors/font_color", gray)
 		prompt.set("theme_override_font_sizes/font_size", 96)
+		damage = 0
 
 
 func make_destroyed() -> void:
@@ -38,12 +40,12 @@ func make_destroyed() -> void:
 
 
 func make_created() -> void:
-	var word = words.choose_word()
+	word = words.choose_word()
 	set_prompt_text(word)
 	set_visible(1)
-	_damage = word.length()
+	damage = 0
 	print("Created")
-	print("Health = ", _damage)
+	print("Health = ", damage)
 
 
 func get_prompt_text() -> String:
@@ -56,10 +58,13 @@ func set_prompt_text(new_text: String) -> void:
 
 
 func take_damage() -> void:
-	print("Damaged = ", _damage)
-	_damage = _damage - 1
-	if _damage <= 0:
+
+	print("Word length = ", word.length())
+	damage = damage + 1
+	print("Damaged = ", damage)
+	if damage >= word.length():
 		destroyed.emit()
+	
 
 
 func make_timer_start(time_to_wait: int) -> void:
