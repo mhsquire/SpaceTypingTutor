@@ -7,8 +7,8 @@
 		Gray Text is smaller 96 px.
 		Orange Text is larger 128px.
 - Tab switching works. Each time tab is pressed the next ship is selected CCW.
-- Ship takes damage then explodes (Default was 10 hits)
+- Ship takes damage in proportion to it's word length then explodes 
 - Upon being destroyed Enemy ship is visible again later (was 3 seconds).
-- Ship takes damage then explodes (Default was 10 hits)
+- Ship takes damage in proportion to it's word length then explodes (Default was 10 hits)
 - Tab switch then try on other enemies.
 - ESC key closes the game scene.
