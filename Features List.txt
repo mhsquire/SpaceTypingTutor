@@ -8,11 +8,13 @@
 - Text length defines damage Quota
 *Bug* constantly being created
 - Text is chosen from wordlist
+- When an enemy is hidden it can't be selected
+
 
 ## ** Below are Features Yet to be Completed for 
 		**Scene** Combat with Ememy ships. **
 
-- When an enemy is hidden it can't be selected.
+.
 - Typing the correct text damages ship, else nothing
 - Typing the correct next letter changes letter from not hit to hit text.
 - Once the hit text is complete the ship is destroyed.

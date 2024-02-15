@@ -1,5 +1,7 @@
 extends Node
 
+var selected_enemy_index = 1
+
 @onready
 var enemy1 = get_node("../Enemies/Enemy1")
 @onready
@@ -9,8 +11,14 @@ var enemy3 = get_node("../Enemies/Enemy3")
 @onready
 var enemies = [enemy1, enemy2, enemy3]
 
-var selected_enemy_index = 1
 
+func _on_destroy_enemy() -> void:
+	print("Enemy Destroyed")
+	enemies[selected_enemy_index].make_destroyed()
+	print("start timer")
+	enemies[selected_enemy_index].make_timer_start(3.0)
+	selected_enemy_index = (selected_enemy_index + 1) % enemies.size()
+	update_selected_enemy_indicator()
 
 
 func create_first_enemy_set():
@@ -30,18 +38,13 @@ func update_selected_enemy_indicator():
 func switch_enemy():
 	# Calculate the new index by wrapping around
 	selected_enemy_index = (selected_enemy_index + 1) % enemies.size()
-	# Update the visual indication of the selected enemy (e.g., highlight)
+	if not enemies[selected_enemy_index].is_visible():
+		selected_enemy_index = (selected_enemy_index + 1) % enemies.size()
 	update_selected_enemy_indicator()
+		
+	# Update the visual indication of the selected enemy (e.g., highlight)
 
 
 func damage_enemy() -> void:
 	enemies[selected_enemy_index].take_damage()
-
-func _on_destroy_enemy() -> void:
-	print("Enemy Destroyed")
-	enemies[selected_enemy_index].make_destroyed()
-	print("start timer")
-	enemies[selected_enemy_index].make_timer_start(3.0)
-	selected_enemy_index = (selected_enemy_index + 1) % enemies.size()
-	update_selected_enemy_indicator()
 

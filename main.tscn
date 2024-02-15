@@ -10,20 +10,19 @@ script/source = "extends Node2D
 
 var active_enemy = null
 var current_letter_index: int = -1
+
 @onready
 var enemy_manager = get_node(\"EnemyManager\")
 @onready
 var first_enemy = get_node(\"Enemies/Enemy1\")
 
 
-
-
 func _ready():
 	print(\"Typing Game\")
 	enemy_manager.create_first_enemy_set()
 
-func _input(event: InputEvent) -> void:
 
+func _input(event: InputEvent) -> void:
 	if event.is_action(\"escape_from_game\"):
 		print(\"Shut Down Requested!\")
 		get_tree().quit()
@@ -38,7 +37,6 @@ func _input(event: InputEvent) -> void:
 		print(key_typed)
 		enemy_manager.damage_enemy()
 		
-
 "
 
 [sub_resource type="ImageTexture" id="ImageTexture_0fu1r"]
