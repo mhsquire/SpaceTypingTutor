@@ -11,11 +11,13 @@
 - When an enemy is hidden it can't be selected
 - Typing the correct text damages ship, else nothing
 **Quirk** Ships maintain their damage after switching with Tab
+- Text changes noticeably to indicate which letters have been typed.
+
 
 ## ** Below are Features Yet to be Completed for 
 		**Scene** Combat with Ememy ships. **
 
-- Text changes noticeably to indicate which letters have been typed.
+
 - Text turns red or something to indicate a mistyped letter, must start over.
 - Supports Dvorak and qwerty.
 More... Such as... Animation and Viewscreen graphics. Sounds?

@@ -34,7 +34,6 @@ func _input(event: InputEvent) -> void:
 	elif event is InputEventKey and not event.is_pressed():
 		var typed_event = event as InputEventKey
 		var key_typed = PackedByteArray([typed_event.physical_keycode]).get_string_from_utf8()
-
 		enemy_manager.damage_enemy(key_typed)
 "
 
@@ -59,16 +58,16 @@ script = ExtResource("2_ddacj")
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Enemy1" parent="Enemies" instance=ExtResource("6_4c4ke")]
-position = Vector2(197, 194)
-scale = Vector2(0.407227, 0.407227)
+position = Vector2(233, 225)
+scale = Vector2(0.256104, 0.256104)
 
 [node name="Enemy2" parent="Enemies" instance=ExtResource("6_4c4ke")]
-position = Vector2(584, 435)
-scale = Vector2(0.426758, 0.426758)
+position = Vector2(596, 404)
+scale = Vector2(0.254395, 0.254395)
 
 [node name="Enemy3" parent="Enemies" instance=ExtResource("6_4c4ke")]
-position = Vector2(958, 200)
-scale = Vector2(0.373047, 0.373047)
+position = Vector2(939, 232)
+scale = Vector2(0.258789, 0.258789)
 
 [node name="Wordlist" type="Node" parent="."]
 script = ExtResource("4_81jne")
