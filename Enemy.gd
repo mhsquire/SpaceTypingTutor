@@ -18,7 +18,10 @@ var word = []
 @onready var prompt = $RichTextLabel
 @onready var prompt_text = prompt.text
 @onready var reinforcement_timer = $ReinforcementTimer
+@onready var shield_timer = $ShieldTimer
 @onready var words = get_node("../../Wordlist")
+@onready var targeted = false
+@onready var missed = false
 
 
 func _ready():
@@ -37,36 +40,31 @@ func _set_to_center(string: String):
 	return "[center]" + string + "[/center]"
 
 
-func _indicate_character_position(next_character_index: int):
-	var orange_text = get_bbcode_color_tag(blue) + word.substr(0, next_character_index) + get_bbcode_end_color_tag()
-	var blue_text = get_bbcode_color_tag(orange) + word.substr(next_character_index, -1) + get_bbcode_end_color_tag()
-	prompt.parse_bbcode(_set_to_center(orange_text + blue_text))
-
-
 func make_target(make_visible: bool) -> void:
 	if make_visible:
-		prompt.set("theme_override_colors/default_color", orange)
+		targeted = true
+		damage = 0
+		$ProgressBar.value = 100
+		reset_text_state()
 		prompt.set("theme_override_font_sizes/normal_font_size", 128)
 	else:
-		prompt.set("theme_override_colors/default_color", gray)
-		prompt.set("theme_override_font_sizes/normal_font_size", 96)
+		targeted = false
 		damage = 0
-		$ProgressBar.value = 100 - damage
+		$ProgressBar.value = 100
+		reset_text_state()
+		prompt.set("theme_override_font_sizes/normal_font_size", 96)
 
 
 func make_destroyed() -> void:
 	set_visible(0)
-	print("Destroyed!")
 
 
 func make_created() -> void:
 	word = words.choose_word()
-	_set_prompt_text(_set_to_center(word))
+	reset_text_state()
 	set_visible(1)
 	damage = 0
-	$ProgressBar.value = 100 - damage
-	print("Created")
-	print("Health = ", damage)
+	$ProgressBar.value = 100
 
 
 func get_prompt_text() -> String:
@@ -75,17 +73,33 @@ func get_prompt_text() -> String:
 
 func _set_prompt_text(new_text: String) -> void:
 	prompt.text = new_text
-	print("new text = ", new_text)
 
 
 func take_damage() -> void:
-	print("Word length = ", word.length())
 	damage = damage + 1
-	$ProgressBar.value = (word.length() - damage) * 100 / word.length()
-	print("Damaged = ", damage)
-	_indicate_character_position(damage)
+	reset_text_state()
 	if damage >= word.length():
 		destroyed.emit()
+
+
+func take_mistype() -> void:
+	missed = true
+	reset_text_state()
+	shield_timer.start(1)
+
+
+func reset_text_state() -> void:
+	var gray_text = get_bbcode_color_tag(gray) + word + get_bbcode_end_color_tag()
+	var blue_text = get_bbcode_color_tag(blue) + word.substr(0, damage) + get_bbcode_end_color_tag()
+	var orange_text = get_bbcode_color_tag(orange) + word.substr(damage, -1) + get_bbcode_end_color_tag()
+	var red_text = get_bbcode_color_tag(red) + word.substr(damage, -1) + get_bbcode_end_color_tag()
+	if targeted:
+		if missed:
+			prompt.parse_bbcode(_set_to_center(blue_text + red_text))
+		elif not missed:
+			prompt.parse_bbcode(_set_to_center(blue_text + orange_text))
+	elif not targeted:
+		prompt.parse_bbcode(_set_to_center(gray_text))
 
 
 func make_timer_start(time_to_wait: int) -> void:
@@ -94,3 +108,13 @@ func make_timer_start(time_to_wait: int) -> void:
 
 func _on_reinforcement_timer_timeout() -> void:
 	make_created()
+
+
+func _on_shield_timer_timeout():
+	if is_visible_in_tree() and targeted:
+		damage = 0
+		$ProgressBar.value = 100
+		missed = false
+		reset_text_state()
+	else:
+		missed = false

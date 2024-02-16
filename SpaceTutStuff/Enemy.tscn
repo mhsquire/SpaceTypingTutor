@@ -37,3 +37,8 @@ theme_override_font_sizes/normal_font_size = 128
 bbcode_enabled = true
 fit_content = true
 scroll_active = false
+
+[node name="ShieldTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="ShieldTimer" to="." method="_on_shield_timer_timeout"]
