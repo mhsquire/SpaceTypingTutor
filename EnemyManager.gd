@@ -43,9 +43,11 @@ func switch_enemy():
 	# Update the visual indication of the selected enemy (e.g., highlight)
 
 
-func damage_enemy(letter: String) -> void:
+func attack_enemy(letter: String) -> void:
 	print(letter)
 	var current_enemy = enemies[selected_enemy_index]
 	print(current_enemy.word[current_enemy.damage].to_upper())
 	if letter == current_enemy.word[current_enemy.damage].to_upper():
 		enemies[selected_enemy_index].take_damage()
+	else:
+		enemies[selected_enemy_index].take_mistype()
