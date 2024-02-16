@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://snhfa3m45oir" path="res://SpaceTutStuff/Gunner.png" id="1_xoawh"]
 [ext_resource type="Script" path="res://Enemy.gd" id="2_txlrf"]
-[ext_resource type="Theme" uid="uid://cl82o28341nfc" path="res://SpaceTutStuff/Targeted.tres" id="3_0ktg8"]
+[ext_resource type="FontFile" uid="uid://d1av2ynee2qbb" path="res://SpaceTutStuff/Duracellio-Regular.otf" id="4_pew80"]
 
 [node name="Enemy" type="Sprite2D"]
 position = Vector2(549, 269)
@@ -10,25 +10,6 @@ scale = Vector2(0.212891, 0.212891)
 texture = ExtResource("1_xoawh")
 script = ExtResource("2_txlrf")
 metadata/_edit_group_ = true
-
-[node name="TextToType" type="Label" parent="."]
-custom_minimum_size = Vector2(128, 128)
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -512.0
-offset_top = -640.0
-offset_right = -512.0
-offset_bottom = -512.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("3_0ktg8")
-horizontal_alignment = 1
-vertical_alignment = 3
-metadata/_edit_use_anchors_ = true
 
 [node name="ReinforcementTimer" type="Timer" parent="."]
 one_shot = true
@@ -44,3 +25,15 @@ offset_left = -512.104
 offset_top = -512.104
 offset_right = -512.352
 offset_bottom = -507.304
+show_percentage = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = -460.0
+offset_top = 432.0
+offset_right = 484.0
+offset_bottom = 545.0
+theme_override_fonts/normal_font = ExtResource("4_pew80")
+theme_override_font_sizes/normal_font_size = 128
+bbcode_enabled = true
+fit_content = true
+scroll_active = false

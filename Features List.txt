@@ -13,6 +13,7 @@
 **Quirk** Ships maintain their damage after switching with Tab
 - Text changes noticeably to indicate which letters have been typed.
 
+
 ## ** Below are Features Yet to be Completed for 
 		**Scene** Combat with Ememy ships. **
 
