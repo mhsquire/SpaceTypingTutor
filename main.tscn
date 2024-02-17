@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bcsx8hqgph108"]
+[gd_scene load_steps=8 format=3 uid="uid://bcsx8hqgph108"]
 
 [ext_resource type="Texture2D" uid="uid://dsdy0son1jaso" path="res://SpaceTutStuff/Star Background.png" id="1_xo02m"]
 [ext_resource type="Script" path="res://EnemyManager.gd" id="2_ddacj"]
 [ext_resource type="Script" path="res://words.gd" id="4_81jne"]
+[ext_resource type="AudioStream" uid="uid://d1wt8ivdycbo" path="res://SpaceTutStuff/blaster.mp3" id="5_7qbkg"]
 [ext_resource type="PackedScene" uid="uid://k74cqgy38ssk" path="res://SpaceTutStuff/Enemy.tscn" id="6_4c4ke"]
 
 [sub_resource type="GDScript" id="GDScript_m0kwl"]
@@ -34,6 +35,7 @@ func _input(event: InputEvent) -> void:
 	elif event is InputEventKey and not event.is_pressed():
 		var typed_event = event as InputEventKey
 		var key_typed = PackedByteArray([typed_event.physical_keycode]).get_string_from_utf8()
+		$Cannon.play()
 		enemy_manager.attack_enemy(key_typed)
 "
 
@@ -62,7 +64,6 @@ script = ExtResource("2_ddacj")
 position = Vector2(205, 201)
 rotation = 0.000971078
 scale = Vector2(0.256104, 0.256104)
-animation = &"Enemy"
 flip_h = true
 
 [node name="Enemy2" parent="Enemies" instance=ExtResource("6_4c4ke")]
@@ -79,6 +80,9 @@ flip_h = true
 
 [node name="Wordlist" type="Node" parent="."]
 script = ExtResource("4_81jne")
+
+[node name="Cannon" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_7qbkg")
 
 [connection signal="destroyed" from="Enemies/Enemy1" to="EnemyManager" method="_on_destroy_enemy"]
 [connection signal="destroyed" from="Enemies/Enemy2" to="EnemyManager" method="_on_destroy_enemy"]

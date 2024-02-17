@@ -15,14 +15,17 @@
 - Text turns red to indicate a mistyped letter, must start over.
 - Enemies animated to move around.
 - Enemies shield hit animation when key typed successfully
-
+- Sound of laser guns when you type.
 
 ## ** Below are Features Yet to be Completed for 
 		**Scene** Combat with Ememy ships. **
 
 
 - Enemies laser animation when hit and when missed.
-- Enemies laser animation when hit and when missed.
+- Viewscreen animation
+- Wave counter and win scenario
+- Player health bar and player death
+
 - Supports Dvorak and qwerty.
 More... Such as... Animation and Viewscreen graphics. Sounds?
 
