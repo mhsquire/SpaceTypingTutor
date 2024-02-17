@@ -7,6 +7,7 @@
 		Each ship has a Shield health bar. 
 		Gray Text is smaller 96 px.
 		Orange Text is larger 128px.
+		Ships move up and down.
 - Tab switching works. Each time tab is pressed the next ship is selected CCW.
 - Ship takes damage when the next correct letter is typed, 
 	- shields go down.

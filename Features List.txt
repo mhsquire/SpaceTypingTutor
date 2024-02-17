@@ -13,11 +13,13 @@
 **Quirk** Ships maintain their damage after switching with Tab
 - Text changes noticeably to indicate which letters have been typed.
 - Text turns red to indicate a mistyped letter, must start over.
+- Enemies animated to move around.
+
 
 ## ** Below are Features Yet to be Completed for 
 		**Scene** Combat with Ememy ships. **
 
-- Enemies animated to move around.
+
 - Enemies shield hit animation when key typed successfully
 - Enemies laser miss animation when missed.
 - Supports Dvorak and qwerty.

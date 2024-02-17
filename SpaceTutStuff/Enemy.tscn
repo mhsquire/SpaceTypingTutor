@@ -1,13 +1,72 @@
-[gd_scene load_steps=4 format=3 uid="uid://k74cqgy38ssk"]
+[gd_scene load_steps=11 format=3 uid="uid://k74cqgy38ssk"]
 
-[ext_resource type="Texture2D" uid="uid://snhfa3m45oir" path="res://SpaceTutStuff/Gunner.png" id="1_xoawh"]
+[ext_resource type="Texture2D" uid="uid://dnc4sqxdqhsx8" path="res://SpaceTutStuff/Gunner1.png" id="1_6lv7c"]
+[ext_resource type="Texture2D" uid="uid://mb1ivqy5d7dh" path="res://SpaceTutStuff/Gunner2.png" id="2_ghexb"]
 [ext_resource type="Script" path="res://Enemy.gd" id="2_txlrf"]
+[ext_resource type="Texture2D" uid="uid://dvnfg3p4cmuqd" path="res://SpaceTutStuff/Gunner3.png" id="3_0ycsi"]
+[ext_resource type="Texture2D" uid="uid://15hyxclqkavk" path="res://SpaceTutStuff/Gunner4.png" id="4_6vq1j"]
 [ext_resource type="FontFile" uid="uid://d1av2ynee2qbb" path="res://SpaceTutStuff/Duracellio-Regular.otf" id="4_pew80"]
+[ext_resource type="Texture2D" uid="uid://cmuwfttslr7tj" path="res://SpaceTutStuff/Gunner5.png" id="5_idcui"]
+[ext_resource type="Texture2D" uid="uid://d1ikfudlkjltm" path="res://SpaceTutStuff/Gunner6.png" id="6_hghr3"]
+[ext_resource type="Texture2D" uid="uid://ckswsngcsqn5g" path="res://SpaceTutStuff/Gunner7.png" id="7_5mns0"]
 
-[node name="Enemy" type="Sprite2D"]
-position = Vector2(549, 269)
+[sub_resource type="SpriteFrames" id="SpriteFrames_iraom"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6lv7c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ghexb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0ycsi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6vq1j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_idcui")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hghr3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_5mns0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_5mns0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hghr3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_idcui")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6vq1j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0ycsi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ghexb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_6lv7c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="Enemy" type="AnimatedSprite2D"]
+position = Vector2(549, 269.509)
+rotation = -0.000622876
 scale = Vector2(0.212891, 0.212891)
-texture = ExtResource("1_xoawh")
+sprite_frames = SubResource("SpriteFrames_iraom")
+frame_progress = 0.00155021
+speed_scale = 2.0
 script = ExtResource("2_txlrf")
 metadata/_edit_group_ = true
 
