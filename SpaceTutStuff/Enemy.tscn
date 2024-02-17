@@ -112,7 +112,7 @@ metadata/_edit_group_ = true
 [node name="ReinforcementTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="ShieldBar" type="ProgressBar" parent="."]
 modulate = Color(0, 1, 1, 1)
 anchors_preset = -1
 anchor_left = 0.046
@@ -141,6 +141,6 @@ one_shot = true
 
 [node name="Shields" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_i04ml")
-animation = &"Full_Shield"
+animation = &"No_Shield"
 
 [connection signal="timeout" from="ShieldTimer" to="." method="_on_shield_timer_timeout"]

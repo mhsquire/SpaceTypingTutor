@@ -25,10 +25,13 @@ var word = []
 
 
 func _ready():
+	# Timers are used to "reinforce" enemies that have been destroyed
 	reinforcement_timer.timeout.connect(_on_reinforcement_timer_timeout)
+	shield_timer.timeout.connect(_on_shield_timer_timeout)
 
 
 func get_bbcode_color_tag(color: Color) -> String:
+	# Creates the "[color=#'color']" tag
 	return "[color=#" + color.to_html(false) + "]"
 
 
@@ -37,21 +40,28 @@ func get_bbcode_end_color_tag() -> String:
 
 
 func _set_to_center(string: String):
+	# centers text with BBCode
 	return "[center]" + string + "[/center]"
 
+func _heal_enemy() -> void:
+	damage = 0
+	_update_enemy_health()
+
+func _update_enemy_health() -> void:
+	# all the necessary calls to update health depending on damage.
+	# Shield bar of Enemy
+	$ShieldBar.value = (word.length() - damage) * 100 / word.length()
+	_set_shield_level()
+	reset_text_state()
 
 func make_target(make_visible: bool) -> void:
 	if make_visible:
 		targeted = true
-		damage = 0
-		$ProgressBar.value = 100
-		reset_text_state()
+		_heal_enemy()
 		prompt.set("theme_override_font_sizes/normal_font_size", 128)
 	else:
 		targeted = false
-		damage = 0
-		$ProgressBar.value = 100
-		reset_text_state()
+		_heal_enemy()
 		prompt.set("theme_override_font_sizes/normal_font_size", 96)
 
 
@@ -61,11 +71,10 @@ func make_destroyed() -> void:
 
 func make_created() -> void:
 	word = words.choose_word()
-	reset_text_state()
 	play("Enemy")
+	_heal_enemy()
 	set_visible(1)
-	damage = 0
-	$ProgressBar.value = 100
+
 
 
 func get_prompt_text() -> String:
@@ -77,6 +86,7 @@ func _set_prompt_text(new_text: String) -> void:
 
 
 func _set_shield_level() -> void:
+	# choose level of shield animation based on percentage damage.
 	var percentage = 100 * (word.length() - damage) / word.length() 
 	if percentage >= 100:
 		$Shields.play("Full_Shield")
@@ -90,20 +100,22 @@ func _set_shield_level() -> void:
 
 func take_damage() -> void:
 	damage = damage + 1
-	$ProgressBar.value = (word.length() - damage) * 100 / word.length()
-	_set_shield_level()
-	reset_text_state()
+	_update_enemy_health()
 	if damage >= word.length():
 		destroyed.emit()
 
 
 func take_mistype() -> void:
 	missed = true
-	reset_text_state()
+	_heal_enemy()
 	shield_timer.start(1)
 
 
 func reset_text_state() -> void:
+	# Color of text is dependant on the state of what is typed
+	# Four strings are generated. Gray is for untargeted enemies.
+	# Blue is for correctly typed letters. Orange is for letters 
+	# that need typed. Red text is failed starting at the letter missed.
 	var gray_text = get_bbcode_color_tag(gray) + word + get_bbcode_end_color_tag()
 	var blue_text = get_bbcode_color_tag(blue) + word.substr(0, damage) + get_bbcode_end_color_tag()
 	var orange_text = get_bbcode_color_tag(orange) + word.substr(damage, -1) + get_bbcode_end_color_tag()
@@ -126,10 +138,5 @@ func _on_reinforcement_timer_timeout() -> void:
 
 
 func _on_shield_timer_timeout():
-	if is_visible_in_tree() and targeted:
-		damage = 0
-		$ProgressBar.value = 100
-		missed = false
-		reset_text_state()
-	else:
-		missed = false
+	_heal_enemy()
+	missed = false
