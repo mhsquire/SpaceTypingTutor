@@ -5,12 +5,14 @@
 	- 	Each ship has text displayed, 
 		the middle one has orange text, flanked by gray text ships.
 		Each ship has a Shield health bar. 
+		Each ship has a Shield.
 		Gray Text is smaller 96 px.
 		Orange Text is larger 128px.
 		Ships move up and down.
 - Tab switching works. Each time tab is pressed the next ship is selected CCW.
 - Ship takes damage when the next correct letter is typed, 
-	- shields go down.
+	- shields get dimmer.
+	- Shield Health bar decreases proportionately.
 	- Typed letters appear blue.
 - After repeated damage when the ship gets to it's word length it then explodes.
 - 3 seconds later the ship is reinforced and visible again.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://k74cqgy38ssk"]
+[gd_scene load_steps=16 format=3 uid="uid://k74cqgy38ssk"]
 
 [ext_resource type="Texture2D" uid="uid://dnc4sqxdqhsx8" path="res://SpaceTutStuff/Gunner1.png" id="1_6lv7c"]
 [ext_resource type="Texture2D" uid="uid://mb1ivqy5d7dh" path="res://SpaceTutStuff/Gunner2.png" id="2_ghexb"]
@@ -9,6 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://cmuwfttslr7tj" path="res://SpaceTutStuff/Gunner5.png" id="5_idcui"]
 [ext_resource type="Texture2D" uid="uid://d1ikfudlkjltm" path="res://SpaceTutStuff/Gunner6.png" id="6_hghr3"]
 [ext_resource type="Texture2D" uid="uid://ckswsngcsqn5g" path="res://SpaceTutStuff/Gunner7.png" id="7_5mns0"]
+[ext_resource type="Texture2D" uid="uid://dc0rielvgnhwe" path="res://SpaceTutStuff/Shields_full.png" id="10_7nkbl"]
+[ext_resource type="Texture2D" uid="uid://d1mxmmmfw3btp" path="res://SpaceTutStuff/Shields_3-4.png" id="11_leppq"]
+[ext_resource type="Texture2D" uid="uid://lw787bu7y4tb" path="res://SpaceTutStuff/Shields_1-3.png" id="12_uqecs"]
+[ext_resource type="Texture2D" uid="uid://m03t7p73p5nq" path="res://SpaceTutStuff/Shields_0.png" id="13_v5jpk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_iraom"]
 animations = [{
@@ -56,8 +60,43 @@ animations = [{
 "texture": ExtResource("1_6lv7c")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Enemy",
 "speed": 4.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i04ml"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_7nkbl")
+}],
+"loop": true,
+"name": &"Full_Shield",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_leppq")
+}],
+"loop": true,
+"name": &"Half_Shield",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_uqecs")
+}],
+"loop": true,
+"name": &"Low_Shield",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_v5jpk")
+}],
+"loop": true,
+"name": &"No_Shield",
+"speed": 5.0
 }]
 
 [node name="Enemy" type="AnimatedSprite2D"]
@@ -65,7 +104,7 @@ position = Vector2(549, 269.509)
 rotation = -0.000622876
 scale = Vector2(0.212891, 0.212891)
 sprite_frames = SubResource("SpriteFrames_iraom")
-frame_progress = 0.00155021
+animation = &"Enemy"
 speed_scale = 2.0
 script = ExtResource("2_txlrf")
 metadata/_edit_group_ = true
@@ -99,5 +138,9 @@ scroll_active = false
 
 [node name="ShieldTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Shields" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_i04ml")
+animation = &"Full_Shield"
 
 [connection signal="timeout" from="ShieldTimer" to="." method="_on_shield_timer_timeout"]

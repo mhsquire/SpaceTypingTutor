@@ -41,6 +41,7 @@ func _input(event: InputEvent) -> void:
 
 [node name="Main" type="Node2D"]
 script = SubResource("GDScript_m0kwl")
+metadata/_edit_horizontal_guides_ = [18.0]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 1179.0
@@ -58,19 +59,22 @@ script = ExtResource("2_ddacj")
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Enemy1" parent="Enemies" instance=ExtResource("6_4c4ke")]
-position = Vector2(202, 175)
+position = Vector2(205, 201)
 rotation = 0.000971078
 scale = Vector2(0.256104, 0.256104)
+animation = &"Enemy"
 flip_h = true
 
 [node name="Enemy2" parent="Enemies" instance=ExtResource("6_4c4ke")]
 position = Vector2(589, 367)
 scale = Vector2(0.254395, 0.254395)
+animation = &"Full_Shield"
 
 [node name="Enemy3" parent="Enemies" instance=ExtResource("6_4c4ke")]
-position = Vector2(925, 183)
+position = Vector2(967, 204)
 rotation = -0.00375984
 scale = Vector2(0.258789, 0.258789)
+animation = &"Full_Shield"
 flip_h = true
 
 [node name="Wordlist" type="Node" parent="."]

@@ -14,14 +14,15 @@
 - Text changes noticeably to indicate which letters have been typed.
 - Text turns red to indicate a mistyped letter, must start over.
 - Enemies animated to move around.
+- Enemies shield hit animation when key typed successfully
 
 
 ## ** Below are Features Yet to be Completed for 
 		**Scene** Combat with Ememy ships. **
 
 
-- Enemies shield hit animation when key typed successfully
-- Enemies laser miss animation when missed.
+- Enemies laser animation when hit and when missed.
+- Enemies laser animation when hit and when missed.
 - Supports Dvorak and qwerty.
 More... Such as... Animation and Viewscreen graphics. Sounds?
 
