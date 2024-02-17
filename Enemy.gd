@@ -62,7 +62,7 @@ func make_destroyed() -> void:
 func make_created() -> void:
 	word = words.choose_word()
 	reset_text_state()
-	play("default")
+	play("Enemy")
 	set_visible(1)
 	damage = 0
 	$ProgressBar.value = 100
@@ -76,8 +76,22 @@ func _set_prompt_text(new_text: String) -> void:
 	prompt.text = new_text
 
 
+func _set_shield_level() -> void:
+	var percentage = 100 * (word.length() - damage) / word.length() 
+	if percentage >= 100:
+		$Shields.play("Full_Shield")
+	elif percentage >= 70:
+		$Shields.play("Half_Shield")
+	elif percentage >= 30:
+		$Shields.play("Low_Shield")
+	else:
+		$Shields.play("No_Shield") 
+
+
 func take_damage() -> void:
 	damage = damage + 1
+	$ProgressBar.value = (word.length() - damage) * 100 / word.length()
+	_set_shield_level()
 	reset_text_state()
 	if damage >= word.length():
 		destroyed.emit()
