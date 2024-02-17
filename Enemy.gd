@@ -1,4 +1,4 @@
-extends Sprite2D
+extends AnimatedSprite2D
 
 # This is the script for all enemies that exist right now.
 # Enemies and managed by EnemyManager which calls various methods here.
@@ -62,6 +62,7 @@ func make_destroyed() -> void:
 func make_created() -> void:
 	word = words.choose_word()
 	reset_text_state()
+	play("default")
 	set_visible(1)
 	damage = 0
 	$ProgressBar.value = 100

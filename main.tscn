@@ -58,16 +58,20 @@ script = ExtResource("2_ddacj")
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Enemy1" parent="Enemies" instance=ExtResource("6_4c4ke")]
-position = Vector2(233, 225)
+position = Vector2(202, 175)
+rotation = 0.000971078
 scale = Vector2(0.256104, 0.256104)
+flip_h = true
 
 [node name="Enemy2" parent="Enemies" instance=ExtResource("6_4c4ke")]
-position = Vector2(596, 404)
+position = Vector2(589, 367)
 scale = Vector2(0.254395, 0.254395)
 
 [node name="Enemy3" parent="Enemies" instance=ExtResource("6_4c4ke")]
-position = Vector2(939, 232)
+position = Vector2(925, 183)
+rotation = -0.00375984
 scale = Vector2(0.258789, 0.258789)
+flip_h = true
 
 [node name="Wordlist" type="Node" parent="."]
 script = ExtResource("4_81jne")
