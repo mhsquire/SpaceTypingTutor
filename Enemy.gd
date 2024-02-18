@@ -52,7 +52,7 @@ func _update_enemy_health() -> void:
 	# Shield bar of Enemy
 	$ShieldBar.value = (word.length() - damage) * 100 / word.length()
 	_set_shield_level()
-	reset_text_state()
+	_reset_text_state()
 
 func make_target(make_visible: bool) -> void:
 	if make_visible:
@@ -66,14 +66,14 @@ func make_target(make_visible: bool) -> void:
 
 
 func make_destroyed() -> void:
-	set_visible(0)
+	set_visible(false)
 
 
 func make_created() -> void:
 	word = words.choose_word()
 	play("Enemy")
 	_heal_enemy()
-	set_visible(1)
+	set_visible(true)
 
 
 
@@ -81,7 +81,7 @@ func get_prompt_text() -> String:
 	return prompt_text
 
 
-func _set_prompt_text(new_text: String) -> void:
+func set_prompt_text(new_text: String) -> void:
 	prompt.text = new_text
 
 
@@ -102,20 +102,20 @@ func take_damage() -> void:
 	damage = damage + 1
 	_update_enemy_health()
 	$LaserStrike.set_visible(true)
-	$LaserStrikeTimer.start()
+	$LaserStrikeTimer.start(1.0)
 	if damage >= word.length():
 		destroyed.emit()
 
 
 func take_mistype() -> void:
 	missed = true
-	_heal_enemy()
 	$LaserMiss.set_visible(true)
-	$LaserMissTimer.start()
-	shield_timer.start(1)
+	$LaserMissTimer.start(1.0)
+	shield_timer.start(1.0)
+	_reset_text_state()
 
 
-func reset_text_state() -> void:
+func _reset_text_state() -> void:
 	# Color of text is dependant on the state of what is typed
 	# Four strings are generated. Gray is for untargeted enemies.
 	# Blue is for correctly typed letters. Orange is for letters 
@@ -144,6 +144,7 @@ func _on_reinforcement_timer_timeout() -> void:
 func _on_shield_timer_timeout():
 	_heal_enemy()
 	missed = false
+	_reset_text_state()
 
 
 func _on_laser_strike_timer_timeout():
