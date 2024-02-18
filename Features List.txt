@@ -16,15 +16,20 @@
 - Enemies animated to move around.
 - Enemies shield hit animation when key typed successfully
 - Sound of laser guns when you type.
+- Enemies laser animation when hit and when missed.
+
 
 ## ** Below are Features Yet to be Completed for 
 		**Scene** Combat with Ememy ships. **
 
 
-- Enemies laser animation when hit and when missed.
 - Viewscreen animation
 - Wave counter and win scenario
 - Player health bar and player death
+
+- Direct player attention to next target with a transition animation.
+	- Destroyed enemy disappears target bars transition to next targeted enemy.
+	- Same for active enemy to enemy trasition.
 
 - Supports Dvorak and qwerty.
 More... Such as... Animation and Viewscreen graphics. Sounds?

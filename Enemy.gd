@@ -101,6 +101,8 @@ func _set_shield_level() -> void:
 func take_damage() -> void:
 	damage = damage + 1
 	_update_enemy_health()
+	$LaserStrike.set_visible(true)
+	$LaserStrikeTimer.start()
 	if damage >= word.length():
 		destroyed.emit()
 
@@ -108,6 +110,8 @@ func take_damage() -> void:
 func take_mistype() -> void:
 	missed = true
 	_heal_enemy()
+	$LaserMiss.set_visible(true)
+	$LaserMissTimer.start()
 	shield_timer.start(1)
 
 
@@ -140,3 +144,11 @@ func _on_reinforcement_timer_timeout() -> void:
 func _on_shield_timer_timeout():
 	_heal_enemy()
 	missed = false
+
+
+func _on_laser_strike_timer_timeout():
+	$LaserStrike.set_visible(false)
+
+
+func _on_laser_miss_timer_timeout():
+	$LaserMiss.set_visible(false)
