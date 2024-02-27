@@ -1,5 +1,8 @@
 ## Test document
 
+Scene 1: Combat with Drones
+
+Test One: Basic Navigation
 - Scene Loads
 	- Three ships
 	- 	Each ship has text displayed, 
@@ -9,6 +12,33 @@
 		Gray Text is smaller 96 px.
 		Orange Text is larger 128px.
 		Ships move up and down.
+- Tab switching works. Each time tab is pressed the next ship is selected CCW.
+- ESC key closes the game scene.
+
+Test Two: Ship takes damage correctly
+- Scene Loads
+	- Three ships as in Test one
+- When correct letter is pressed ship takes damage.
+	- Laser graphic hits ship then disappears.
+	- Typed letter appears blue.
+- Countinue until a long word with greater than 5 letters appears. 
+	- shields get dimmer.
+	- Shield Health bar decreases proportionately.
+	- Typed letters appear blue.
+- After repeated damage when the ship gets to it's word length it then explodes.
+- *Important* New drone is chosen based on CCW position.
+- 3 seconds later the destroyed ship is "reinforced" and visible again with a different word.
+- Tab switching works. Each time tab is pressed the next ship is selected CCW.
+- Try to type the second letter ship does not take damage, text turns red for 3 seconds.
+- Type the first letter and the ship takes damage. 
+- Destroy ship, destroyed Enemy ship is visible again later (was 3 seconds).
+- Ship takes damage when the next letter is typed when it gets to it's word length it then explodes. 
+- Tab switch then try on other enemies.
+- ESC key closes the game scene.
+
+Test Three
+- Scene Loads
+	- Three ships as in Test one
 - Tab switching works. Each time tab is pressed the next ship is selected CCW.
 - Ship takes damage when the next correct letter is typed, 
 	- shields get dimmer.

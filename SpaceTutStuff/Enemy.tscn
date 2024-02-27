@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://k74cqgy38ssk"]
+[gd_scene load_steps=17 format=3 uid="uid://k74cqgy38ssk"]
 
 [ext_resource type="Texture2D" uid="uid://dnc4sqxdqhsx8" path="res://SpaceTutStuff/Gunner1.png" id="1_6lv7c"]
 [ext_resource type="Texture2D" uid="uid://mb1ivqy5d7dh" path="res://SpaceTutStuff/Gunner2.png" id="2_ghexb"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://d1mxmmmfw3btp" path="res://SpaceTutStuff/Shields_3-4.png" id="11_leppq"]
 [ext_resource type="Texture2D" uid="uid://lw787bu7y4tb" path="res://SpaceTutStuff/Shields_1-3.png" id="12_uqecs"]
 [ext_resource type="Texture2D" uid="uid://m03t7p73p5nq" path="res://SpaceTutStuff/Shields_0.png" id="13_v5jpk"]
+[ext_resource type="Texture2D" uid="uid://6rpde6x4x3av" path="res://SpaceTutStuff/Blue Laser.png" id="14_lm2cv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_iraom"]
 animations = [{
@@ -143,4 +144,37 @@ one_shot = true
 sprite_frames = SubResource("SpriteFrames_i04ml")
 animation = &"No_Shield"
 
+[node name="LaserStrike" type="TextureRect" parent="."]
+visible = false
+anchors_preset = -1
+anchor_right = 1.103
+anchor_bottom = 1.05
+offset_left = -549.479
+offset_top = -157.742
+offset_right = -1192.95
+offset_bottom = -984.942
+scale = Vector2(1.12197, 4.17208)
+texture = ExtResource("14_lm2cv")
+
+[node name="LaserMiss" type="TextureRect" parent="."]
+visible = false
+anchors_preset = -1
+anchor_right = 1.103
+anchor_bottom = 1.05
+offset_left = -549.479
+offset_top = -157.742
+offset_right = -1192.95
+offset_bottom = -984.942
+rotation = -1.07837
+scale = Vector2(1.12197, 4.17208)
+texture = ExtResource("14_lm2cv")
+
+[node name="LaserStrikeTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="LaserMissTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="ShieldTimer" to="." method="_on_shield_timer_timeout"]
+[connection signal="timeout" from="LaserStrikeTimer" to="." method="_on_laser_strike_timer_timeout"]
+[connection signal="timeout" from="LaserMissTimer" to="." method="_on_laser_miss_timer_timeout"]
