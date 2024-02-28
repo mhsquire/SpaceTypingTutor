@@ -1,0 +1,33 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://bomysbrjtk543"]
+
+[ext_resource type="Texture2D" uid="uid://bnaud7k8w7e1w" path="res://SpaceTutStuff/ViewScreen.png" id="1_a8j74"]
+[ext_resource type="Texture2D" uid="uid://bhwelq81wk3np" path="res://SpaceTutStuff/ViewScreen1.png" id="2_cvpj7"]
+[ext_resource type="Texture2D" uid="uid://q378bh08yush" path="res://SpaceTutStuff/ViewScreen2.png" id="3_c71qt"]
+[ext_resource type="Texture2D" uid="uid://cgxft0cxnonwf" path="res://SpaceTutStuff/ViewScreen3.png" id="4_h6sts"]
+[ext_resource type="Texture2D" uid="uid://cjgwba7lyxe45" path="res://SpaceTutStuff/ViewScreen4.png" id="5_ssw1p"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_a8j74")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_a8j74")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_cvpj7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_c71qt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_h6sts")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ssw1p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

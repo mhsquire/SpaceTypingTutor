@@ -18,12 +18,14 @@
 - Sound of laser guns when you type.
 - Enemies laser animation when hit and when missed.
 - *Bug* Red text didn't disappear after shield healing.
+- Viewscreen animation
+
 
 ## ** Below are Features Yet to be Completed for 
 		**Scene** Combat with Ememy ships. **
 
 
-- Viewscreen animation
+
 - Wave counter and win scenario
 - Player health bar and player death
 
